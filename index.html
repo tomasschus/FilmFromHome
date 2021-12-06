@@ -15,7 +15,7 @@
             var videoElement = document.getElementById('videoElement');
             var flvPlayer = flvjs.createPlayer({
                 type: 'flv',
-                url: 'http://localhost:8000/live/STREAM_NAME.flv'
+                url: 'https://filmfh.herokuapp.com:8000/live/STREAM_NAME.flv'
             });
             flvPlayer.attachMediaElement(videoElement);
             flvPlayer.load();
