@@ -1,0 +1,17 @@
+{
+  "name": "ffh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm start",
+    "dev": "nodemon start"
+  },
+  "author": "Tomas Schuster & Tomas Bond",
+  "license": "ISC",
+  "dependencies": {
+    "node-media-server": "^2.3.8",
+    "nodemon": "^2.0.15"
+  }
+}
