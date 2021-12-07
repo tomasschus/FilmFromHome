@@ -1,0 +1,11 @@
+
+.writeMessage{
+    width: 70%;
+    align-items: center;
+    height: 50px;
+    font-size: large;
+}
+
+video{
+    width: 80%;
+}

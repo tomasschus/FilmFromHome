@@ -11,7 +11,10 @@
   "author": "Tomas Schuster & Tomas Bond",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
     "node-media-server": "^2.3.8",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "socket.io": "^4.4.0"
   }
 }
