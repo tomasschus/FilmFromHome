@@ -1,13 +1,18 @@
 const express = require('express')
+const http = require('http');
 const app = express()
-const port = 80
+const port = 8000
+const path = require('path')
+const server = http.createServer(app);
 
-app.get('/',function(req,res) {
-    res.sendFile(__dirname + '/index.html');
-});
+const { Server } = require("socket.io");
+const io = new Server(server);
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+
+app.use(express.static(path.join(__dirname, 'public')))
+
+server.listen(port, () => {
+  console.log(`App listening on port ${port}`)
 })
 
 const NodeMediaServer = require('node-media-server');
@@ -22,16 +27,27 @@ const config = {
   http: {
     port: 5500,
     allow_origin: '*'
-  }
+  },
+  
 };
 
 /* https config requiere 
-
-  https: {
+https: {
     port: 8443,
     key:'./privatekey.pem',
     cert:'./certificate.pem',
   }
+  
 */
 var nms = new NodeMediaServer(config)
 nms.run();
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+  socket.on('chat-message', (msg) => {
+    io.emit('new-message', {msg})
+  });
+});
