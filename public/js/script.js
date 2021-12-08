@@ -44,6 +44,12 @@ socket.on('new-message', function (data) {
     chatHistory.innerHTML = `<p> ${data.msg.nombre}: ${data.msg.mensaje} </p>` + chatHistory.innerHTML;
 })
 
+socket.on('usersConnected', function (data) {
+    var usersConnected = document.getElementById("usersConnected");
+    usersConnected.innerText = `Hay ${data} personas viendo esta transmisión`;
+    var usersConnected = document.getElementById("usersConnected2");
+    usersConnected.innerText = `Hay ${data} personas viendo esta transmisión`;
+})
 
 
 let lon;
@@ -89,3 +95,14 @@ function mutear(){
 function fullscreen(){
     videoElement.requestFullscreen()
 }
+
+function PIP(){
+    if (document.pictureInPictureElement) {
+        document.exitPictureInPicture();
+    } else {
+      if (document.pictureInPictureEnabled) {
+        videoElement.requestPictureInPicture();
+      }
+    }
+}
+

@@ -1,4 +1,7 @@
-body{
+body {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    font-size: 100%;
     background-color: black;
     color: aliceblue;
     
@@ -9,6 +12,11 @@ input{
 .title{
     text-align: center;
 }
+
+.usersConnected{
+    color: green;
+}
+
 video{
     width: 80%;
 }
