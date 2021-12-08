@@ -8,9 +8,9 @@ const server = http.createServer(app);
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-server.listen(port, () => {
-  console.log(`App listening on port ${port}`)
-})
+server.listen(process.env.PORT || 3000, () => {
+    console.log(`App listening on port ${port}`)
+  })
 
 /* 
 
