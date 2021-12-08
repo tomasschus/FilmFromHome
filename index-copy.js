@@ -1,22 +1,19 @@
-
 const express = require('express')
 const http = require('http');
 const app = express()
-const port = 3000
+const port = 8000
 const path = require('path')
 const server = http.createServer(app);
+
+const { Server } = require("socket.io");
+const io = new Server(server);
+
 
 app.use(express.static(path.join(__dirname, 'public')))
 
 server.listen(port, () => {
   console.log(`App listening on port ${port}`)
 })
-
-/* 
-
-const { Server } = require("socket.io");
-const io = new Server(server);
-
 
 const NodeMediaServer = require('node-media-server');
 const config = {
@@ -34,14 +31,14 @@ const config = {
   
 };
 
-https config requiere 
+/* https config requiere 
 https: {
     port: 8443,
     key:'./privatekey.pem',
     cert:'./certificate.pem',
   }
   
-
+*/
 var nms = new NodeMediaServer(config)
 nms.run();
 
@@ -54,4 +51,3 @@ io.on('connection', (socket) => {
     io.emit('new-message', {msg})
   });
 });
-*/
