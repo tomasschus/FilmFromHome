@@ -1,24 +1,23 @@
 const express = require('express')
 const http = require('http');
 const app = express()
-const port = 8000
 const path = require('path')
 const server = http.createServer(app);
 
 const { Server } = require("socket.io");
 const io = new Server(server);
 
+const port1 = process.env.PORT||80
+const port2 = process.env.PORT||1935
+const port3 = process.env.PORT||5501
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-server.listen(process.env.PORT || 3000, () => {
-  console.log(`App listening on port ${port}`)
+server.listen(port1, () => {
+  console.log(`App listening on port ${port1}`)
 })
 
 const NodeMediaServer = require('node-media-server');
-
-const port2 = process.env.PORT||1935
-const port3 = process.env.PORT||5500
 
 const config = {
   rtmp: {

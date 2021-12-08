@@ -1,11 +1,20 @@
-
+body{
+    background-color: black;
+    color: aliceblue;
+    
+}
+input{
+    background-color: rgb(231, 231, 231);
+}
+.title{
+    text-align: center;
+}
+video{
+    width: 80%;
+}
 .writeMessage{
     width: 70%;
     align-items: center;
     height: 50px;
     font-size: large;
-}
-
-video{
-    width: 80%;
 }
