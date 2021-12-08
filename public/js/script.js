@@ -43,6 +43,10 @@ socket.on('new-message', function (data) {
     var chatHistory = document.getElementById("chatHistory");
     chatHistory.innerHTML = `<p> ${data.msg.nombre}: ${data.msg.mensaje} </p>` + chatHistory.innerHTML;
 })
+socket.on('usersConnected', function (data) {
+    var usersConnected = document.getElementById("usersConnected");
+    usersConnected.innerText = `${data} personas viendo este stream `;
+})
 
 
 
@@ -89,3 +93,13 @@ function mutear(){
 function fullscreen(){
     videoElement.requestFullscreen()
 }
+
+function togglePictureInPicture() {
+    if (document.pictureInPictureElement) {
+        document.exitPictureInPicture();
+    } else {
+      if (document.pictureInPictureEnabled) {
+        videoElement.requestPictureInPicture();
+      }
+    }
+  }

@@ -42,15 +42,25 @@ https: {
   }
   
 */
+
+var usersConnected = 0
+
 var nms = new NodeMediaServer(config)
 nms.run();
 
 io.on('connection', (socket) => {
   console.log('a user connected');
+  usersConnected = usersConnected + 1
+  io.emit('usersConnected', usersConnected)
+
   socket.on('disconnect', () => {
     console.log('user disconnected');
+    usersConnected = usersConnected - 1
+    io.emit('usersConnected', usersConnected)
   });
+
   socket.on('chat-message', (msg) => {
     io.emit('new-message', {msg})
   });
+  
 });
