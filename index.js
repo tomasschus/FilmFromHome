@@ -16,16 +16,20 @@ server.listen(process.env.PORT || 3000, () => {
 })
 
 const NodeMediaServer = require('node-media-server');
+
+const port2 = process.env.PORT||1935
+const port3 = process.env.PORT||5500
+
 const config = {
   rtmp: {
-    port: 1935,
+    port: port2,
     chunk_size: 60000,
     gop_cache: true,
     ping: 30,
     ping_timeout: 60
   },
   http: {
-    port: 5500,
+    port: port3,
     allow_origin: '*'
   },
   
