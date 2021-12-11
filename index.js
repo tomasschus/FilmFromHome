@@ -42,7 +42,7 @@ https: {
   }
   
 */
-
+var historialChat = []
 var usersConnected = 0
 
 var nms = new NodeMediaServer(config)
@@ -52,6 +52,7 @@ io.on('connection', (socket) => {
   console.log('a user connected');
   usersConnected = usersConnected + 1
   io.emit('usersConnected', usersConnected)
+  io.emit("historialChat",historialChat)
 
   socket.on('disconnect', () => {
     console.log('user disconnected');
@@ -60,7 +61,16 @@ io.on('connection', (socket) => {
   });
 
   socket.on('chat-message', (msg) => {
-    io.emit('new-message', {msg})
+    if(msg.mensaje == "!vaciar"){
+      usersConnected = []
+      io.emit('!vaciar', {})
+    }else{
+      var t = new Date();
+      var time = t.getHours() + ":" + t.getMinutes()
+      msg.time = time
+      historialChat.push(msg)
+      io.emit('new-message', {msg})
+    }
   });
-  
+
 });

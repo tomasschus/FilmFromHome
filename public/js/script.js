@@ -41,14 +41,28 @@ function send() {   // cuando aprieto ENVIAR
 
 socket.on('new-message', function (data) {
     var chatHistory = document.getElementById("chatHistory");
-    chatHistory.innerHTML = `<p> ${data.msg.nombre}: ${data.msg.mensaje} </p>` + chatHistory.innerHTML;
+    chatHistory.innerHTML = `<p> (${data.msg.time}) ${data.msg.nombre}: ${data.msg.mensaje} </p>` + chatHistory.innerHTML;
 })
 socket.on('usersConnected', function (data) {
     var usersConnected = document.getElementById("usersConnected");
-    usersConnected.innerText = `${data} personas viendo este stream `;
+    if(data==1){
+        usersConnected.innerText = `${data} persona viendo este stream `;
+    }else{
+        usersConnected.innerText = `${data} personas viendo este stream `;
+    }
 })
 
+socket.on('historialChat', function (historialChat) {
+    var chatHistory = document.getElementById("chatHistory");
+    historialChat.forEach(element => {
+        chatHistory.innerHTML = `<p> (${element.time}) ${element.nombre}: ${element.mensaje} </p>` + chatHistory.innerHTML;
+    });
 
+})
+
+socket.on('!vaciar', function () {
+    chatHistory.innerHTML = ""
+})
 
 let lon;
 let lat;
